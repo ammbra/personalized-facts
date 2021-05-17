@@ -71,14 +71,6 @@ public class PersonalizedFactResourceTest {
     }
 
     @Test
-    void shouldFindBySource() {
-        given()
-                .when().get("/api/animal/api/3")
-                .then()
-                .statusCode(200)
-                .body(notNullValue());
-    }
-    @Test
     void shouldMeasureCachedFactAsync() {
         //given
         CaffeineCache cache = (CaffeineCache) cacheManager.getCache("animal-fact-async").get();
