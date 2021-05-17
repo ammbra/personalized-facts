@@ -20,6 +20,12 @@ public class PersonalizedFactsRepositoryTest {
     @Inject
     PersonalizedFactsRepository repository;
 
+    @Test
+    void shouldFindBySource() {
+        Set<PersonalizedFact> expectedFacts = repository.findBySource("api", 3);
+        assertNotNull(expectedFacts);
+        assertFalse(expectedFacts.isEmpty());
+    }
 
 
     @Test
