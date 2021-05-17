@@ -71,35 +71,6 @@ public class PersonalizedFactResourceTest {
     }
 
     @Test
-    void shouldMeasureCachedFactAsync() {
-        //given
-        CaffeineCache cache = (CaffeineCache) cacheManager.getCache("animal-fact-async").get();
-        registry.gauge("cache.size", cache, value -> cache.getSize());
-
-        //when
-        for (int i = 0; i < 5; i++) {
-            given()
-                    .when().get("/api/animal-async/5887e1d85c873e0011036889/1")
-                    .then().statusCode(200).body(notNullValue());
-            given()
-                    .when().get("/api/animal-async/591f98703b90f7150a19c125/1")
-                    .then().statusCode(200).body(notNullValue());
-            given()
-                    .when().get("/api/animal-async/5887e1d85c873e0011036889/2")
-                    .then().statusCode(200).body(notNullValue());
-            given()
-                    .when().get("/api/animal-async/588e746706ac2b00110e59ff/3")
-                    .then().statusCode(200).body(notNullValue());
-        }
-
-        //then
-        Meter gauge = registry.find("cache.size").meter();
-        List<Measurement> measurements = new ArrayList<>();
-        gauge.measure().iterator().forEachRemaining(measurements::add);
-        assertEquals(3, measurements.get(0).getValue());
-    }
-
-    @Test
     void compareResponseTimes() {
         //given
         Timer timerSync = registry.timer("sync.request.facts.duration");
