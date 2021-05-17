@@ -1,5 +1,7 @@
 package org.acme.experiment.external;
 
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import org.acme.experiment.dto.FactDTO;
 import org.acme.experiment.dto.PersonalizedFactDTO;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
@@ -25,5 +27,6 @@ public interface FactsService {
     @GET
     @Path("/{factID}")
     @Produces("application/json")
-    CompletionStage<PersonalizedFactDTO> getByFactIDAsync(@PathParam("factID") String factID);
+    @CacheResult(cacheName = "animal-fact-async")
+    CompletionStage<PersonalizedFactDTO> getByFactIDAsync(@CacheKey @PathParam("factID") String factID);
 }
