@@ -4,6 +4,7 @@ import org.acme.experiment.external.FactsService;
 import org.acme.experiment.dto.PersonalizedFactDTO;
 import org.acme.experiment.dto.FactDTO;
 import org.eclipse.microprofile.graphql.DefaultValue;
+import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
@@ -32,8 +33,8 @@ public class PersonalizedFactsResource {
     @GET
     @Path("/animal-async")
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<FactDTO> getByTypeAsync(@QueryParam("type") String type) throws ExecutionException, InterruptedException {
-        return CompletableFuture.supplyAsync(() -> factsService.getByType(type)).get();
+    public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
+        return CompletableFuture.supplyAsync(() -> factsService.getByType(type));
     }
 
     @GET
