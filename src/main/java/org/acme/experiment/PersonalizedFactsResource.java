@@ -36,7 +36,6 @@ public class PersonalizedFactsResource {
         return factsService.getByType(type);
     }
 
-
     @GET
     @Path("/animal-type-async")
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,7 +65,7 @@ public class PersonalizedFactsResource {
     @Path("/animal-async")
     @Produces(MediaType.APPLICATION_JSON)
     @Query("allAnimalsByTypeAsync")
-    public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) throws ExecutionException, InterruptedException {
+    public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
         return CompletableFuture.supplyAsync(() -> factsService.getByType(type));
     }
 }
