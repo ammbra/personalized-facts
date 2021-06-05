@@ -116,7 +116,7 @@ public class PersonalizedFactResourceTest {
         timerSync.record(() -> {
             for (int i = 0; i < 5; i++) {
                 given()
-                        .when().get("/api/animal?type=cat,horse")
+                        .when().get("/api/fact?type=cat,horse")
                         .then().and()
                         .statusCode(200)
                         .body(notNullValue());
@@ -129,7 +129,7 @@ public class PersonalizedFactResourceTest {
         timerASync.record(() -> {
             for (int i = 0; i < 5; i++) {
                 given()
-                        .when().get("/api/animal-async?type=cat,horse")
+                        .when().get("/api/fact-async?type=cat,horse")
                         .then().and()
                         .statusCode(200)
                         .body(notNullValue());

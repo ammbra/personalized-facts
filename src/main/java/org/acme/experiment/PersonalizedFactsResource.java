@@ -29,7 +29,7 @@ public class PersonalizedFactsResource {
     PersonalizedFactsService personalizedFactsService;
 
     @GET
-    @Path("/fact")
+    @Path("fact")
     @Produces(MediaType.APPLICATION_JSON)
     @Query("allFactsByType")
     public Set<FactDTO> getByType(@QueryParam("type") String type) {
@@ -37,7 +37,7 @@ public class PersonalizedFactsResource {
     }
 
     @GET
-    @Path("/fact-type-async")
+    @Path("fact-type-async")
     @Produces(MediaType.APPLICATION_JSON)
     @Query("allFactsByTypeAndAmount")
     public CompletionStage<Set<FactDTO>> getByTypeAndAmount(@QueryParam("type") String type, @QueryParam("amount") Integer amount) throws ExecutionException, InterruptedException {
@@ -45,7 +45,7 @@ public class PersonalizedFactsResource {
     }
 
     @GET
-    @Path("/fact-async/{factId}/{randomness}")
+    @Path("fact-async/{factId}/{randomness}")
     @Query("animalFactById")
     @Produces(MediaType.APPLICATION_JSON)
     public CompletionStage<PersonalizedFactDTO> getFactAsync(@PathParam("factId") String factId, @PathParam("randomness") Double randomness) {
@@ -53,7 +53,7 @@ public class PersonalizedFactsResource {
     }
 
     @GET
-    @Path("/fact/{source}/{size}")
+    @Path("fact/{source}/{size}")
     @Query("animalFactBySource")
     @Produces(MediaType.APPLICATION_JSON)
     public Set<PersonalizedFactDTO> getPaginatedAnimalsBySource(@PathParam("source") String source, @PathParam("size")@DefaultValue("10") Integer size) {
@@ -62,7 +62,7 @@ public class PersonalizedFactsResource {
 
 
     @GET
-    @Path("/fact-async")
+    @Path("fact-async")
     @Produces(MediaType.APPLICATION_JSON)
     @Query("allFactsByTypeAsync")
     public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
