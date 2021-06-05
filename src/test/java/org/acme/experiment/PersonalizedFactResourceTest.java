@@ -35,7 +35,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactByType() {
         given()
-                .when().get("/api/animal?type=cat")
+                .when().get("/api/fact?type=cat")
                 .then().and()
                 .statusCode(200)
                 .body(notNullValue());
@@ -44,7 +44,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactByTypeAsync() {
         given()
-                .when().get("/api/animal-async?type=cat")
+                .when().get("/api/fact-async?type=cat")
                 .then().and()
                 .statusCode(200)
                 .body(notNullValue());
@@ -53,7 +53,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactByTypeAndAmountAsync() {
         given()
-                .when().get("/api/animal-type-async?type=cat&amount=2")
+                .when().get("/api/fact-type-async?type=cat&amount=2")
                 .then()
                 .statusCode(200)
                 .body("$.size()", is(2),
@@ -64,7 +64,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactAsync() {
         given()
-                .when().get("/api/animal-async/591f98703b90f7150a19c125/1")
+                .when().get("/api/fact-async/591f98703b90f7150a19c125/1")
                 .then()
                 .statusCode(200)
                 .body(notNullValue());
@@ -79,7 +79,7 @@ public class PersonalizedFactResourceTest {
         timerSync.record(() -> {
             for (int i = 0; i < 5; i++) {
                 given()
-                        .when().get("/api/animal?type=cat,horse")
+                        .when().get("/api/fact?type=cat,horse")
                         .then().and()
                         .statusCode(200)
                         .body(notNullValue());
@@ -92,7 +92,7 @@ public class PersonalizedFactResourceTest {
         timerASync.record(() -> {
             for (int i = 0; i < 5; i++) {
                 given()
-                        .when().get("/api/animal-async?type=cat,horse")
+                        .when().get("/api/fact-async?type=cat,horse")
                         .then().and()
                         .statusCode(200)
                         .body(notNullValue());

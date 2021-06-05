@@ -22,7 +22,7 @@ public class PersonalizedFactsRepositoryTest {
 
     @Test
     void shouldFindBySource() {
-        Set<PersonalizedFact> expectedFacts = repository.findBySource("api", 3);
+        Set<PersonalizedFact> expectedFacts = repository.findBySource("user", 3);
         assertNotNull(expectedFacts);
         assertFalse(expectedFacts.isEmpty());
     }
