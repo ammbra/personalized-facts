@@ -29,32 +29,32 @@ public class PersonalizedFactsResource {
     PersonalizedFactsService personalizedFactsService;
 
     @GET
-    @Path("/animal")
+    @Path("/fact")
     @Produces(MediaType.APPLICATION_JSON)
-    @Query("allAnimalsByType")
+    @Query("allFactsByType")
     public Set<FactDTO> getByType(@QueryParam("type") String type) {
         return factsService.getByType(type);
     }
 
     @GET
-    @Path("/animal-type-async")
+    @Path("/fact-type-async")
     @Produces(MediaType.APPLICATION_JSON)
-    @Query("animalByTypeAndAmount")
+    @Query("allFactsByTypeAndAmount")
     public CompletionStage<Set<FactDTO>> getByTypeAndAmount(@QueryParam("type") String type, @QueryParam("amount") Integer amount) throws ExecutionException, InterruptedException {
         return factsService.getByTypeAsync(type, amount);
     }
 
     @GET
-    @Path("/animal-async/{factId}/{randomness}")
-    @Query("animalByFactId")
+    @Path("/fact-async/{factId}/{randomness}")
+    @Query("animalFactById")
     @Produces(MediaType.APPLICATION_JSON)
     public CompletionStage<PersonalizedFactDTO> getFactAsync(@PathParam("factId") String factId, @PathParam("randomness") Double randomness) {
         return factsService.getByFactIDAsync(factId);
     }
 
     @GET
-    @Path("/animal/{source}/{size}")
-    @Query("animalBySource")
+    @Path("/fact/{source}/{size}")
+    @Query("animalFactBySource")
     @Produces(MediaType.APPLICATION_JSON)
     public Set<PersonalizedFactDTO> getPaginatedAnimalsBySource(@PathParam("source") String source, @PathParam("size")@DefaultValue("10") Integer size) {
         return personalizedFactsService.findBySource(source, size);
@@ -62,9 +62,9 @@ public class PersonalizedFactsResource {
 
 
     @GET
-    @Path("/animal-async")
+    @Path("/fact-async")
     @Produces(MediaType.APPLICATION_JSON)
-    @Query("allAnimalsByTypeAsync")
+    @Query("allFactsByTypeAsync")
     public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
         return CompletableFuture.supplyAsync(() -> factsService.getByType(type));
     }

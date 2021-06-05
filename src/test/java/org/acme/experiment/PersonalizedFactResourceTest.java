@@ -35,7 +35,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactByType() {
         given()
-                .when().get("/api/animal?type=cat")
+                .when().get("/api/fact?type=cat")
                 .then().and()
                 .statusCode(200)
                 .body(notNullValue());
@@ -44,7 +44,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactByTypeAsync() {
         given()
-                .when().get("/api/animal-async?type=cat")
+                .when().get("/api/fact-async?type=cat")
                 .then().and()
                 .statusCode(200)
                 .body(notNullValue());
@@ -53,7 +53,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactByTypeAndAmountAsync() {
         given()
-                .when().get("/api/animal-type-async?type=cat&amount=2")
+                .when().get("/api/fact-type-async?type=cat&amount=2")
                 .then()
                 .statusCode(200)
                 .body("$.size()", is(2),
@@ -64,7 +64,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldGetFactAsync() {
         given()
-                .when().get("/api/animal-async/591f98703b90f7150a19c125/1")
+                .when().get("/api/fact-async/591f98703b90f7150a19c125/1")
                 .then()
                 .statusCode(200)
                 .body(notNullValue());
@@ -73,7 +73,7 @@ public class PersonalizedFactResourceTest {
     @Test
     void shouldFindBySource() {
         given()
-                .when().get("/api/animal/api/3")
+                .when().get("/api/fact/api/3")
                 .then()
                 .statusCode(200)
                 .body(notNullValue());
@@ -87,16 +87,16 @@ public class PersonalizedFactResourceTest {
         //when
         for (int i = 0; i < 5; i++) {
             given()
-                    .when().get("/api/animal-async/5887e1d85c873e0011036889/1")
+                    .when().get("/api/fact-async/5887e1d85c873e0011036889/1")
                     .then().statusCode(200).body(notNullValue());
             given()
-                    .when().get("/api/animal-async/591f98703b90f7150a19c125/1")
+                    .when().get("/api/fact-async/591f98703b90f7150a19c125/1")
                     .then().statusCode(200).body(notNullValue());
             given()
-                    .when().get("/api/animal-async/5887e1d85c873e0011036889/2")
+                    .when().get("/api/fact-async/5887e1d85c873e0011036889/2")
                     .then().statusCode(200).body(notNullValue());
             given()
-                    .when().get("/api/animal-async/588e746706ac2b00110e59ff/3")
+                    .when().get("/api/fact-async/588e746706ac2b00110e59ff/3")
                     .then().statusCode(200).body(notNullValue());
         }
 
