@@ -18,12 +18,12 @@ public interface FactsService {
     Set<FactDTO> getByType(@QueryParam("animal_type") String animalType);
 
     @GET
-    @Path("/random")
+    @Path("random")
     @Produces("application/json")
     CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("animal_type") String animalType, @QueryParam("amount") int amount);
 
     @GET
-    @Path("/{factID}")
+    @Path("{factID}")
     @Produces("application/json")
     CompletionStage<PersonalizedFactDTO> getByFactIDAsync(@PathParam("factID") String factID);
 }
