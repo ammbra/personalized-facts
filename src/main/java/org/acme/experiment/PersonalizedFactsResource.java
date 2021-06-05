@@ -24,28 +24,28 @@ public class PersonalizedFactsResource {
 
 
     @GET
-    @Path("/animal")
+    @Path("fact")
     @Produces(MediaType.APPLICATION_JSON)
     public Set<FactDTO> getByType(@QueryParam("type") String type) {
         return factsService.getByType(type);
     }
 
     @GET
-    @Path("/animal-async")
+    @Path("fact-async")
     @Produces(MediaType.APPLICATION_JSON)
     public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
         return CompletableFuture.supplyAsync(() -> factsService.getByType(type));
     }
 
     @GET
-    @Path("/animal-type-async")
+    @Path("fact-type-async")
     @Produces(MediaType.APPLICATION_JSON)
     public CompletionStage<Set<FactDTO>> getByTypeAndAmount(@QueryParam("type") String type, @QueryParam("amount") Integer amount) throws ExecutionException, InterruptedException {
         return factsService.getByTypeAsync(type, amount);
     }
 
     @GET
-    @Path("/animal-async/{factId}/{randomness}")
+    @Path("fact-async/{factId}/{randomness}")
     @Produces(MediaType.APPLICATION_JSON)
     public CompletionStage<PersonalizedFactDTO> getFactAsync(@PathParam("factId") String factId, @PathParam("randomness")@DefaultValue("0.03") Double randomness) {
         return factsService.getByFactIDAsync(factId);
