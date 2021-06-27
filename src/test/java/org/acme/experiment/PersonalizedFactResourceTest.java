@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import javax.inject.Inject;
-
 import java.util.ArrayList;
 import java.util.List;
 

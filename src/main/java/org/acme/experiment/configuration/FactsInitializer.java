@@ -2,8 +2,8 @@ package org.acme.experiment.configuration;
 
 import io.quarkus.runtime.Startup;
 import lombok.SneakyThrows;
-import org.acme.experiment.external.FactsService;
 import org.acme.experiment.dto.FactDTO;
+import org.acme.experiment.external.FactsService;
 import org.acme.experiment.mapper.PersonalizedFactsMapper;
 import org.acme.experiment.model.PersonalizedFact;
 import org.acme.experiment.service.PersonalizedFactsService;
@@ -16,7 +16,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 @Startup
 @ApplicationScoped
@@ -37,10 +36,10 @@ public class FactsInitializer {
 
     @SneakyThrows
     @PostConstruct
-    public void init() throws InterruptedException, ExecutionException {
+    public void init() {
         LOGGER.debug("Initializing the db from external service");
         PersonalizedFactsMapper personalizedMapper = new PersonalizedFactsMapper();
-        Set<FactDTO> facts = factsService.getByTypeAsync("cat", initialCapacity).toCompletableFuture().get();
+        Set<FactDTO> facts = factsService.getByTypeAsync("cat", initialCapacity);
         Set<PersonalizedFact> personalizedFacts = personalizedMapper.mapFromDTO(facts);
         personalizedFactsService.setup(personalizedFacts);
         LOGGER.debug("End initialization of the db ");

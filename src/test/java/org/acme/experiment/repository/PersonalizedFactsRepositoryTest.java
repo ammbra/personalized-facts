@@ -3,6 +3,7 @@ package org.acme.experiment.repository;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
+import org.acme.experiment.dto.FactDTO;
 import org.acme.experiment.model.PersonalizedFact;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ public class PersonalizedFactsRepositoryTest {
 
     @Test
     void shouldFindBySource() {
-        Set<PersonalizedFact> expectedFacts = repository.findBySource("api", 3);
+        Set<PersonalizedFact> expectedFacts = repository.findBySource(FactDTO.API, 1);
         assertNotNull(expectedFacts);
         assertFalse(expectedFacts.isEmpty());
     }
@@ -30,7 +31,7 @@ public class PersonalizedFactsRepositoryTest {
 
     @Test
     void shouldNotFindBySource() {
-        Set<PersonalizedFact> expectedFacts = repository.findBySource("web", 3);
+        Set<PersonalizedFact> expectedFacts = repository.findBySource(FactDTO.WEB, 1);
         assertNotNull(expectedFacts);
         assertTrue(expectedFacts.isEmpty());
     }

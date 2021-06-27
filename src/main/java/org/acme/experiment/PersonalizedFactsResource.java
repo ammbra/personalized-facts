@@ -41,7 +41,7 @@ public class PersonalizedFactsResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Query("allFactsByTypeAndAmount")
     public CompletionStage<Set<FactDTO>> getByTypeAndAmount(@QueryParam("type") String type, @QueryParam("amount") Integer amount) throws ExecutionException, InterruptedException {
-        return factsService.getByTypeAsync(type, amount);
+        return CompletableFuture.supplyAsync(() -> factsService.getByTypeAsync(type, amount));
     }
 
     @GET

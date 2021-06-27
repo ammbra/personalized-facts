@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.NoArgsConstructor;
 
+import javax.json.bind.annotation.JsonbCreator;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class FactDTO {
 
+    public static final String WEB = "web";
+    public static final String API = "api";
     public String _id;
     public String type;
     public String text;
@@ -26,5 +29,13 @@ public class FactDTO {
     public Date createdAt;
 
     public boolean used;
+
+    @JsonbCreator
+    public static FactDTO empty() {
+        FactDTO emptyDTO = new FactDTO();
+        emptyDTO.source = API;
+        return emptyDTO;
+    }
+
 
 }
