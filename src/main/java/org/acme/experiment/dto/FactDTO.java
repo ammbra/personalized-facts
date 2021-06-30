@@ -11,8 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class FactDTO {
 
-    public static final String WEB = "web";
     public static final String API = "api";
+    public static final String USER = "user";
     public String _id;
     public String type;
     public String text;
@@ -33,7 +33,7 @@ public class FactDTO {
     @JsonbCreator
     public static FactDTO empty() {
         FactDTO emptyDTO = new FactDTO();
-        emptyDTO.source = API;
+        emptyDTO.source = USER;
         return emptyDTO;
     }
 

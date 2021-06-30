@@ -9,21 +9,20 @@ import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 
-import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 @QuarkusTestResource(H2DatabaseTestResource.class)
-public class PersonalizedFactsRepositoryTest {
+public class PersonalizedFactsRepositoryITest {
 
     @Inject
     PersonalizedFactsRepository repository;
 
     @Test
     void shouldFindBySource() {
-        Set<PersonalizedFact> expectedFacts = repository.findBySource(FactDTO.API, 1);
+        Set<PersonalizedFact> expectedFacts = repository.findBySource(FactDTO.USER, 1);
         assertNotNull(expectedFacts);
         assertFalse(expectedFacts.isEmpty());
     }
@@ -31,7 +30,7 @@ public class PersonalizedFactsRepositoryTest {
 
     @Test
     void shouldNotFindBySource() {
-        Set<PersonalizedFact> expectedFacts = repository.findBySource(FactDTO.WEB, 1);
+        Set<PersonalizedFact> expectedFacts = repository.findBySource(FactDTO.API, 1);
         assertNotNull(expectedFacts);
         assertTrue(expectedFacts.isEmpty());
     }

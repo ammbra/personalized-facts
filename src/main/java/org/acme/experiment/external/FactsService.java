@@ -49,13 +49,4 @@ public interface FactsService {
 
     }
 
-    public static class PersonalizedFactFallback implements FallbackHandler<CompletionStage<PersonalizedFactDTO>> {
-
-        private static final CompletionStage<PersonalizedFactDTO> EMPTY_PERSONALIZED_FACT = PersonalizedFactDTO.emptyAsync();
-        @Override
-        public CompletionStage<PersonalizedFactDTO> handle(ExecutionContext context) {
-           return EMPTY_PERSONALIZED_FACT;
-        }
-
-    }
 }

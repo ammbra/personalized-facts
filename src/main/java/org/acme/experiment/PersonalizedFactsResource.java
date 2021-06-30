@@ -37,6 +37,14 @@ public class PersonalizedFactsResource {
     }
 
     @GET
+    @Path("fact-async")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Query("allFactsByTypeAsync")
+    public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
+        return CompletableFuture.supplyAsync(() -> factsService.getByType(type));
+    }
+
+    @GET
     @Path("fact-type-async")
     @Produces(MediaType.APPLICATION_JSON)
     @Query("allFactsByTypeAndAmount")
@@ -61,11 +69,4 @@ public class PersonalizedFactsResource {
     }
 
 
-    @GET
-    @Path("fact-async")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Query("allFactsByTypeAsync")
-    public CompletionStage<Set<FactDTO>> getByTypeAsync(@QueryParam("type") String type) {
-        return CompletableFuture.supplyAsync(() -> factsService.getByType(type));
-    }
 }

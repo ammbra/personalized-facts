@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Singleton
+@ApplicationScoped
 public class PersonalizedFactsRepository implements PanacheRepository<PersonalizedFact> {
 
     @Transactional

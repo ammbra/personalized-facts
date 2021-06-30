@@ -6,7 +6,10 @@ import io.micrometer.core.instrument.Timer;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import io.quarkus.cache.CacheManager;
 import io.quarkus.cache.runtime.caffeine.CaffeineCache;
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
+import org.acme.experiment.external.WiremockFacts;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -23,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @QuarkusTest
+@QuarkusTestResource(WiremockFacts.class)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class PersonalizedFactResourceTest {
 
@@ -115,7 +119,7 @@ public class PersonalizedFactResourceTest {
         timerSync.record(() -> {
             for (int i = 0; i < 5; i++) {
                 given()
-                        .when().get("/api/fact?type=cat,horse")
+                        .when().get("/api/fact?type=cat")
                         .then().and()
                         .statusCode(200)
                         .body(notNullValue());
@@ -128,7 +132,7 @@ public class PersonalizedFactResourceTest {
         timerASync.record(() -> {
             for (int i = 0; i < 5; i++) {
                 given()
-                        .when().get("/api/fact-async?type=cat,horse")
+                        .when().get("/api/fact-async?type=cat")
                         .then().and()
                         .statusCode(200)
                         .body(notNullValue());
