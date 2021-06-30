@@ -52,8 +52,7 @@ If you want to learn more about building native executables, please consult http
 
 Access Graphql UI via http://localhost:8080/q/graphql-ui
 
-## Branch order
-https://github.com/ammbra/personalized-facts/tree/develop
+## Branch order until this one
 
 https://github.com/ammbra/personalized-facts/tree/develop-with-cache
 
