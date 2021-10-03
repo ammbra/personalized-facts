@@ -44,7 +44,7 @@ public class PersonalizedFact  {
 
     @Setter
     @Getter
-    private boolean deleted;;
+    private boolean deleted;
 
     @Setter
     @Getter
