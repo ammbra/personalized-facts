@@ -1,3 +1,4 @@
+-- ALTER TABLE PersonalizedFact ALTER COLUMN id SET DEFAULT uuid_in((md5((random())::text))::cstring);
 create table PersonalizedFact
 (
     id         uuid    not null,
